@@ -2,9 +2,14 @@ import java.time.LocalDate;
 
 public class Main {
 
+    public static String codeSeparator(){
+        System.out.println("------------------");
+        return null;
+    }
+
     public static int leapYear() {
         int currentYear = LocalDate.now().getYear();
-        if (currentYear % 79 == 0) {
+        if (currentYear % 4 == 0) {
             System.out.println(currentYear + " високосный год");
         } else {
             System.out.println(currentYear + " невисокосный год");
@@ -20,21 +25,22 @@ public class Main {
         }
     }
 
-    public static int appInstall() {
+    public static String appInstall() {
         String osName = "iOS";
-        int currentYear = LocalDate.now().getYear();
         int clientOS = getClientOS(osName);
+        if (clientOS == 0){
+           osName = "IOS";
+        } else {
+           osName = "Android";
+        }
+        return osName;
+    }
+
+    public static int lightVersion(){
+        int currentYear = LocalDate.now().getYear();
         int osYear = 2014;
-        if (clientOS == 0) {
-            System.out.println("Установите версию приложения для IOS");
-            if (currentYear > osYear) {
-                System.out.println("Для корректной работы рекомендуем установить облегченную версию приложения.");
-            } else if (clientOS == 1) {
-                System.out.println("Установите версию приложения для Android");
-                if (currentYear > osYear){
-                    System.out.println("Для корректной работы рекомендуем установить облегченную версию приложения.");
-                }
-            }
+        if (currentYear > osYear){
+            System.out.println("Рекомендуем установить облегченную версию приложения.");
         }
         return currentYear;
     }
@@ -53,11 +59,14 @@ public class Main {
     }
 
     public static void main(String[] args) {
+        codeSeparator();
         leapYear(); //задание 1
-
-        appInstall(); //задание 2
-
+        codeSeparator();
+        System.out.println("Установите версию приложения для: " + appInstall());
+        lightVersion();
+        codeSeparator();
         System.out.println("Срок доставки: "+ deliveryDays() + " дня"); //задание 3
+        codeSeparator();
         }
 
     }
