@@ -7,14 +7,13 @@ public class Main {
         return null;
     }
 
-    public static int leapYear() {
+    public static void printLeapYear() {
         int currentYear = LocalDate.now().getYear();
-        if (currentYear % 4 == 0) {
+        if (currentYear % 4 == 0 && currentYear % 100 != 0 || currentYear % 400 == 0) {
             System.out.println(currentYear + " високосный год");
         } else {
             System.out.println(currentYear + " невисокосный год");
         }
-        return currentYear;
     }
 
     public static int getClientOS(String name) {
@@ -25,27 +24,22 @@ public class Main {
         }
     }
 
-    public static String appInstall() {
+    public static void appInstall() {
         String osName = "iOS";
         int clientOS = getClientOS(osName);
         if (clientOS == 0){
-           osName = "IOS";
+            System.out.println("IOS");
         } else {
-           osName = "Android";
+            System.out.println("Android");
         }
-        return osName;
-    }
-
-    public static int lightVersion(){
         int currentYear = LocalDate.now().getYear();
         int osYear = 2014;
         if (currentYear > osYear){
             System.out.println("Рекомендуем установить облегченную версию приложения.");
         }
-        return currentYear;
     }
 
-    public static int deliveryDays(){
+    public static int calculateDeliveryDays(){
         int deliveryDistance = 95;
         int days = 0;
         if (deliveryDistance <= 20) {
@@ -60,12 +54,12 @@ public class Main {
 
     public static void main(String[] args) {
         codeSeparator();
-        leapYear(); //задание 1
+        printLeapYear(); //задание 1
         codeSeparator();
-        System.out.println("Установите версию приложения для: " + appInstall());
-        lightVersion();
+        System.out.println("Установите версию приложения для: "); //задание 2
+        appInstall();
         codeSeparator();
-        System.out.println("Срок доставки: "+ deliveryDays() + " дня"); //задание 3
+        System.out.println("Срок доставки: "+ calculateDeliveryDays() + " дня"); //задание 3
         codeSeparator();
         }
 
